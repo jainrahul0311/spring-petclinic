@@ -12,9 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Pull docker image
-        run: docker pull castimaging/fast-scan-java-cli
-
       - name: Run Fast Scan
         run: |
          cd ${{ github.workspace }}
