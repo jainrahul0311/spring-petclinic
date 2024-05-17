@@ -22,7 +22,7 @@ jobs:
           --fail
       - name: Get User Details
         run: |
-          curl -L \
+          curl --request GET \
           --url https://api.github.com/user
           --header 'Accept: application/vnd.github+json' \
           --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
