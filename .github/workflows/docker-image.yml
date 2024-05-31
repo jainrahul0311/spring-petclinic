@@ -1,0 +1,17 @@
+name: Run IL-CLI
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  run-fastscan:
+    runs-on: docker.io/castimaging/carl-java-cli:alpha
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check DIR
+        run: |
+          echo `pwd`
+          ls -al
